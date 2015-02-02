@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanahawa.Ecbcc", "Kanahawa.Ecbcc\Kanahawa.Ecbcc.csproj", "{C65D12B5-5443-4E1E-BDD8-3418C655E561}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanahawa.Ecbcc.Tests", "Kanahawa.Ecbcc.Tests\Kanahawa.Ecbcc.Tests.csproj", "{04CC2385-B42C-4C33-A5F8-3C724B140D80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04CC2385-B42C-4C33-A5F8-3C724B140D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CC2385-B42C-4C33-A5F8-3C724B140D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CC2385-B42C-4C33-A5F8-3C724B140D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CC2385-B42C-4C33-A5F8-3C724B140D80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65D12B5-5443-4E1E-BDD8-3418C655E561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65D12B5-5443-4E1E-BDD8-3418C655E561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65D12B5-5443-4E1E-BDD8-3418C655E561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65D12B5-5443-4E1E-BDD8-3418C655E561}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
