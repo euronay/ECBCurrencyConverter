@@ -2,9 +2,9 @@
 // Converter.cs
 //
 // Author:
-//       JNaylor <>
+//       James Naylor <james@kanahawa.com>
 //
-// Copyright (c) 2015 JNaylor
+// Copyright (c) 2015 James Naylor
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -43,7 +44,7 @@ namespace Kanahawa.Ecbcc
 		{
 			try{
 				if(!File.Exists("eurofxref-daily.xml")){
-					CurrencyUpdater.Update();
+					CurrencyConverter.Update();
 				}
 
 				// try and load our rates
@@ -89,6 +90,30 @@ namespace Kanahawa.Ecbcc
 		{
 			return this.Rates [toCurrency] * value;
 		}
+
+		public static bool Update()
+		{
+			try
+			{
+				// make request to get rates
+				var request = WebRequest.Create("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
+
+				// get response
+				var response = request.GetResponse();
+
+				// save response to file
+				var fileStream = File.Create("eurofxref-daily.xml");
+				response.GetResponseStream ().CopyTo(fileStream);
+				fileStream.Close();
+
+				return true;
+			}
+			catch(Exception ex)
+			{
+				throw new Exception("Update failed", ex);
+			}
+		}
+
 	}
 }
 

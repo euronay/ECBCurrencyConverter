@@ -2,9 +2,9 @@
 // ConverterTests.cs
 //
 // Author:
-//       JNaylor <>
+//       James Naylor <james@kanahawa.com>
 //
-// Copyright (c) 2015 JNaylor
+// Copyright (c) 2015 James Naylor
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -94,6 +94,12 @@ namespace Kanahawa.Ecbcc.Tests
 		public void GbpToUsd()
 		{
 			converter.Convert (1, Currency.GBP, Currency.USD).Should ().BeApproximately (1.5028M, 0.0001M);
+		}
+
+		[Test]
+		public void TestDescription()
+		{
+			Currency.EUR.Description ().Should ().Be ("Euro", "extension method should provide description for currency");
 		}
 			
 	}

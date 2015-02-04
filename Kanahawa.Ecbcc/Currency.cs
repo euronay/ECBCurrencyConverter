@@ -2,9 +2,9 @@
 // Currency.cs
 //
 // Author:
-//       JNaylor <>
+//       James Naylor <james@kanahawa.com>
 //
-// Copyright (c) 2015 JNaylor
+// Copyright (c) 2015 James Naylor
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

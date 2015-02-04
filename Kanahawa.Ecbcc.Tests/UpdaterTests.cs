@@ -2,9 +2,9 @@
 // UpdaterTests.cs
 //
 // Author:
-//       JNaylor <>
+//       James Naylor <james@kanahawa.com>
 //
-// Copyright (c) 2015 JNaylor
+// Copyright (c) 2015 James Naylor
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@ namespace Kanahawa.Ecbcc.Tests
 		[Test ()]
 		public void Update ()
 		{
-			CurrencyUpdater.Update ().Should().Be(true, "the updater should be able to download the rates file");
+			CurrencyConverter.Update ().Should().Be(true, "the updater should be able to download the rates file");
 
 			File.Exists ("eurofxref-daily.xml").Should ().Be (true, "the downloaded rates file should exist");
 
