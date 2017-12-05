@@ -23,80 +23,80 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using FluentAssertions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Reflection;
+using FluentAssertions;
 
 namespace Kanahawa.Ecbcc.Tests
 {
-	[TestFixture ()]
+	[TestClass ()]
 	public class ConverterTests
 	{
 		CurrencyConverter converter;
 
-		[SetUp()]
+		[TestInitialize()]
 		public void Setup ()
 		{
 			// remove any existing rates
-			if (File.Exists ("eurofxref-daily.xml")) {
-				File.Delete ("eurofxref-daily.xml");
-			}
+			// if (File.Exists ("eurofxref-daily.xml")) {
+			// 	File.Delete ("eurofxref-daily.xml");
+			// }
 
-			// we package up a fixed version of the rates file with the tests so we can test conversions (rates change daily!)
-			var setDateRefs = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Kanahawa.Ecbcc.Tests.eurofxref-daily.xml");
+			// // we package up a fixed version of the rates file with the tests so we can test conversions (rates change daily!)
+			// var setDateRefs = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Kanahawa.Ecbcc.Tests.eurofxref-daily.xml");
 
-			var fileStream = File.Create("eurofxref-daily.xml");
-			setDateRefs.CopyTo(fileStream);
-			fileStream.Close();
+			// var fileStream = File.Create("eurofxref-daily.xml");
+			// setDateRefs.CopyTo(fileStream);
+			// fileStream.Close();
 
 			converter = new CurrencyConverter ();
 		}
 
-		[Test ()]
+		[TestMethod()]
 		public void Date ()
 		{
-			converter.Day.Should ().Be (new DateTime (2015, 02, 02), "test rates are from 2015-02-02");
+			Assert.AreEqual(converter.Day, new DateTime (2015, 02, 02), "test rates are from 2015-02-02");
 		}
 
-		[Test ()]
+		[TestMethod()]
 		public void RateCount()
 		{
-			converter.Rates.Count.Should ().BeGreaterThan (0, "there should be more than 0 rates");
+			converter.Rates.Count.Should().BeGreaterThan (0, "there should be more than 0 rates");
 		}
 
-		[Test]
+		[TestMethod()]
 		public void EurToEur()
 		{
 			converter.Convert (1M, Currency.EUR, Currency.EUR).Should ().Be (1M);
 		}
 
-		[Test]
+		[TestMethod()]
 		public void EurToGbp()
 		{
 			converter.Convert (1M, Currency.EUR, Currency.GBP).Should ().Be (0.75260M);
 		}
 
-		[Test]
+		[TestMethod()]
 		public void GbpToEur()
 		{
 			converter.Convert (1M, Currency.GBP, Currency.EUR).Should ().BeApproximately (1.3287M, 0.0001M);
 		}
 
-		[Test]
+		[TestMethod()]
 		public void GbpToGbp()
 		{
 			converter.Convert (1M, Currency.GBP, Currency.GBP).Should ().Be (1M);
 		}
 
-		[Test]
+		[TestMethod()]
 		public void GbpToUsd()
 		{
 			converter.Convert (1, Currency.GBP, Currency.USD).Should ().BeApproximately (1.5028M, 0.0001M);
 		}
 
-		[Test]
+		[TestMethod()]
 		public void TestDescription()
 		{
 			Currency.EUR.Description ().Should ().Be ("Euro", "extension method should provide description for currency");
