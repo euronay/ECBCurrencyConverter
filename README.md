@@ -7,11 +7,10 @@ Currency conversion library for .NET / Mono that uses the daily exchange rates p
 
 Build the solution and add a reference in your project to the compiled Kanahawa.Ecbcc.dll file.
 
-To convert Pounds sterling to US dollars:
+To convert £100 Pounds sterling to US dollars:
 
 ```c#
-  CurrencyConverter converter = new CurrencyConverter();
-  decimal result = converter.Convert(100, Currency.GBP, Currency.USD);
+  decimal result = new CurrencyConverter().From(Currency.GBP).To(Currency.USD).Convert(100);
 ```
 
 ## Getting the Source
