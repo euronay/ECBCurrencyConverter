@@ -36,9 +36,13 @@ namespace Kanahawa.Ecbcc
 {
 	public class CurrencyConverter
 	{
+		private Currency _fromCurrency = Currency.EUR;
+		private Currency _toCurrency = Currency.EUR;
+
 		public Dictionary<Currency, decimal> Rates { get; private set; }
 
 		public DateTime Day { get; private set; }
+
 
 		public CurrencyConverter ()
 		{
@@ -68,17 +72,30 @@ namespace Kanahawa.Ecbcc
 			}
 		}
 
-		public decimal Convert(decimal value, Currency fromCurrency, Currency toCurrency)
+		public CurrencyConverter From(Currency currency)
+		{	
+			_fromCurrency = currency;
+			return this;
+		}
+
+		public CurrencyConverter To(Currency currency)
 		{
-			if (fromCurrency == Currency.EUR) {
-				return ConvertFromEur (value, toCurrency);
+			_toCurrency = currency;
+			return this;
+		}
+
+
+		public decimal Convert(decimal value)
+		{
+			if (_fromCurrency == Currency.EUR) {
+				return ConvertFromEur (value, _toCurrency);
 			}
 
-			if (toCurrency == Currency.EUR) {
-				return ConvertToEur (value, fromCurrency);
+			if (_toCurrency == Currency.EUR) {
+				return ConvertToEur (value, _fromCurrency);
 			}
 
-			return ConvertFromEur (ConvertToEur (value, fromCurrency), toCurrency);
+			return ConvertFromEur (ConvertToEur (value, _fromCurrency), _toCurrency);
 		}
 
 		private decimal ConvertToEur(decimal value, Currency fromCurrency)
