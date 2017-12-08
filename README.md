@@ -1,6 +1,8 @@
 ECB Currency Converter
 ------
 
+[![Build status](https://ci.appveyor.com/api/projects/status/qlqclv1pcp44b60d?svg=true)](https://ci.appveyor.com/project/euronay/ecbcurrencyconverter)
+
 Currency conversion library for .NET / Mono that uses the daily exchange rates published by the European Central Bank.
 
 ## Usage
